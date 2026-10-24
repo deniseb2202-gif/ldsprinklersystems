@@ -1,4 +1,4 @@
-LDS Sprinkler Systems LLC - Website Files
+LD Sprinkler Systems LLC - Website Files
 ==========================================
 
 WHAT'S IN THIS FOLDER
