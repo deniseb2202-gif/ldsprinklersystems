@@ -1,6 +1,0 @@
-# Plain static site: no build step, publish the repository root.
-[build]
-  publish = "."
-  command = "echo 'Static site, no build needed'"
-  # Never skip a deploy: "exit 1" tells Netlify there are changes to build.
-  ignore = "exit 1"
