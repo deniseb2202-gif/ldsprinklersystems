@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LD Sprinkler Systems | Digital Business Card</title>
+<meta name="description" content="LD Sprinkler Systems digital business card. Call, email or request a free estimate. Serving Ocean, Monmouth, Middlesex and Union Counties, NJ.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://ldsprinklersystems.com/card/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1b1c1f">
+<style>html{background:#1b1c1f}body{font-size:14px}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout concept: a letterhead in the truck colors, charcoal grey and gold — monogram and name
+   centered under a double rule, contact details set as labeled lines,
+   services as a two-column list below a second rule, one deliberate
+   navy surface throughout (not a light/dark toggle). */
+:root{
+  --paper:#2b2d31;
+  --paper-2:#1b1c1f;
+  --ink:#f3f0e7;
+  --ink-soft:#a5a5a1;
+  --gold:#d6a93f;
+  --gold-deep:#ebc470;
+  --rule:#45474c;
+  --panel:#36383d;
+  --font-display:'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-body:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper-2);
+  color:var(--ink);
+  font-family:var(--font-body);
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:40px;
+  min-height:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.wrap{
+  width:100%;
+  max-width:440px;
+}
+
+.sheet{
+  background:var(--paper);
+  border:1px solid var(--rule);
+  padding:44px 34px 36px;
+}
+
+.crest{
+  width:46px;height:46px;
+  margin:0 auto 18px;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:19px;
+  color:var(--gold-deep);
+}
+.crest span:first-child{position:relative;top:-2px}
+.crest span:last-child{position:relative;top:2px}
+
+h1{
+  margin:0;
+  text-align:center;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:30px;
+  letter-spacing:.3px;
+  text-wrap:balance;
+}
+.role{
+  text-align:center;
+  margin:6px 0 0;
+  font-size:11px;
+  letter-spacing:2.2px;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+}
+
+.rule-set{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:24px 0;
+}
+.rule-set::before,.rule-set::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:var(--rule);
+}
+.rule-mark{
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--gold);
+  flex:none;
+}
+
+.blurb{
+  text-align:center;
+  font-size:13.5px;
+  color:var(--ink-soft);
+  line-height:1.65;
+  max-width:34ch;
+  margin:0 auto 28px;
+}
+
+.contact-block{
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  max-width:300px;
+  margin:0 auto;
+}
+.contact-line{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:10px;
+  text-align:center;
+  font-size:14.5px;
+  font-variant-numeric:tabular-nums;
+}
+.contact-label{
+  flex:none;
+  width:52px;
+  text-align:right;
+  font-size:9.5px;
+  font-weight:600;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.contact-line a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:1px;
+}
+.contact-line a:hover{border-color:var(--gold)}
+
+.copy-row{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin:14px 0 26px;
+}
+.copy-pill{
+  border:1px solid var(--rule);
+  background:transparent;
+  color:var(--ink-soft);
+  font-family:var(--font-body);
+  font-size:10.5px;
+  letter-spacing:.3px;
+  padding:6px 11px;
+  border-radius:20px;
+  cursor:pointer;
+}
+.copy-pill:hover{border-color:var(--gold);color:var(--gold-deep)}
+.copy-pill:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.copy-pill[data-copied="true"]{color:var(--gold-deep);border-color:var(--gold)}
+
+.cta{
+  display:block;
+  text-align:center;
+  margin:26px auto 0;
+  padding:14px 20px;
+  max-width:260px;
+  background:var(--gold);
+  color:#26282c;
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.cta:hover{background:var(--gold-deep)}
+
+.rule-thin{
+  height:1px;
+  background:var(--rule);
+  margin:0 0 24px;
+}
+
+.section-label{
+  text-align:center;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0 0 16px;
+}
+
+.services{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px 20px;
+  list-style:none;
+  margin:0 0 24px;
+  padding:0;
+  font-family:var(--font-display);
+  font-size:16px;
+  text-align:center;
+}
+
+.areas{
+  text-align:center;
+  font-size:12.5px;
+  color:var(--ink-soft);
+  line-height:1.6;
+}
+.areas strong{
+  display:block;
+  color:var(--ink);
+  font-weight:600;
+  font-size:clamp(9.5px, 3vw, 12.5px);
+  white-space:nowrap;
+  margin-bottom:4px;
+}
+
+.share-row{
+  display:flex;
+  gap:10px;
+  margin-top:16px;
+}
+.share-btn{
+  flex:1;
+  border:1px solid var(--rule);
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:12.5px;
+  padding:13px 10px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.share-btn.primary{
+  background:var(--panel);
+  color:var(--gold-deep);
+  border-color:var(--gold);
+}
+.share-btn.primary:hover{background:var(--rule)}
+.share-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.share-btn svg{width:14px;height:14px;flex:none}
+
+.share-panel{margin-top:14px;border:1px solid var(--rule);background:var(--panel);padding:16px 14px 14px}
+.share-panel-title{margin:0 0 12px;text-align:center;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+.share-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.share-opt{display:block;width:100%;text-align:center;padding:11px 8px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer}
+.share-opt:hover{border-color:var(--gold);color:var(--gold-deep)}
+.share-opt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.footer-note{
+  text-align:center;
+  font-size:10.5px;
+  color:var(--ink-soft);
+  opacity:.7;
+  margin:14px 0 0;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="sheet">
+    <div class="crest"><span>L</span><span>D</span></div>
+    <h1>LD Sprinkler Systems</h1>
+    <p class="role">Irrigation &amp; Property Services</p>
+
+    <div class="rule-set"><span class="rule-mark"></span></div>
+
+    <p class="blurb">25+ years of hands-on experience keeping lawns, drainage, and outdoor property in working order. Free estimates.</p>
+
+    <div class="contact-block">
+      <div class="contact-line">
+        <span class="contact-label">Main</span>
+        <a href="tel:+18485250532">(848) 525-0532</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">Alt</span>
+        <a href="tel:+19089107685">(908) 910-7685</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">Email</span>
+        <a href="mailto:ldsprinklersystemllc@gmail.com">ldsprinklersystemllc@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="copy-row">
+      <button class="copy-pill" data-copy="(848) 525-0532">Copy phone</button>
+      <button class="copy-pill" data-copy="ldsprinklersystemllc@gmail.com">Copy email</button>
+    </div>
+
+    <div class="rule-thin"></div>
+
+    <p class="section-label">Services</p>
+    <ul class="services">
+      <li>Sprinkler &amp; Irrigation</li>
+      <li>Drainage Systems</li>
+      <li>Fencing</li>
+      <li>Landscape Lighting</li>
+      <li>Landscaping</li>
+      <li>Power Washing</li>
+    </ul>
+
+    <div class="areas">
+      <strong>Ocean, Monmouth, Middlesex &amp; Union Counties, NJ</strong>
+      Mon&ndash;Sun, 8am&ndash;8pm &middot; ldsprinklersystems.com
+    </div>
+
+    <a class="cta" href="https://ldsprinklersystems.com/#estimate">Click Here for a Free Estimate</a>
+
+    <div class="share-row">
+      <button class="share-btn primary" id="shareBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        Share card
+      </button>
+      <button class="share-btn" id="copyLinkBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        Copy link
+      </button>
+    </div>
+
+    <div class="share-panel" id="sharePanel" hidden>
+      <p class="share-panel-title">Share this card</p>
+      <div class="share-grid">
+        <a class="share-opt" id="shMsg" href="#">Messages</a>
+        <a class="share-opt" id="shMail" href="#">Email</a>
+        <a class="share-opt" id="shWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="share-opt" id="shFb" href="#" target="_blank" rel="noopener">Facebook</a>
+        <a class="share-opt" id="shX" href="#" target="_blank" rel="noopener">X</a>
+        <a class="share-opt" id="shIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <button class="share-opt" id="shCopy" style="margin-top:8px">Copy link</button>
+    </div>
+
+    <p class="footer-note">Tap a phone or email line to call or write &mdash; or use Copy.</p>
+  </div>
+</div>
+
+<script>
+function fallbackCopy(text){
+  var ta=document.createElement('textarea');
+  ta.value=text;
+  ta.style.position='fixed';
+  ta.style.opacity='0';
+  document.body.appendChild(ta);
+  ta.focus();ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+function copyText(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){fallbackCopy(text);});
+  } else {
+    fallbackCopy(text);
+  }
+}
+document.querySelectorAll('.copy-pill').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    copyText(btn.getAttribute('data-copy'));
+    var original=btn.textContent;
+    btn.textContent='Copied';
+    btn.setAttribute('data-copied','true');
+    setTimeout(function(){
+      btn.textContent=original;
+      btn.removeAttribute('data-copied');
+    }, 1500);
+  });
+});
+
+var pageUrl = 'https://ldsprinklersystems.com/card/';
+var shareText = 'LD Sprinkler Systems — irrigation & property services in New Jersey. Free estimates: ';
+function wireSharePanel(){
+  var u=encodeURIComponent(pageUrl), t=encodeURIComponent(shareText);
+  var map={
+    shMsg:'sms:?&body='+t+u,
+    shMail:'mailto:?subject='+encodeURIComponent('LD Sprinkler Systems')+'&body='+t+u,
+    shWa:'https://wa.me/?text='+t+u,
+    shFb:'https://www.facebook.com/sharer/sharer.php?u='+u,
+    shX:'https://twitter.com/intent/tweet?text='+t+'&url='+u,
+    shIn:'https://www.linkedin.com/sharing/share-offsite/?url='+u
+  };
+  Object.keys(map).forEach(function(id){var el=document.getElementById(id); if(el){el.setAttribute('href',map[id]);}});
+}
+wireSharePanel();
+function openSharePanel(){
+  var p=document.getElementById('sharePanel');
+  p.hidden=!p.hidden;
+  if(!p.hidden){p.scrollIntoView({behavior:'smooth',block:'nearest'});}
+}
+document.getElementById('shCopy').addEventListener('click', function(){
+  copyText(pageUrl);
+  var b=this, o=b.textContent;
+  b.textContent='Link copied';
+  setTimeout(function(){b.textContent=o;}, 1500);
+});
+
+document.getElementById('copyLinkBtn').addEventListener('click', function(){
+  copyText(pageUrl);
+  var btn=this;
+  var original=btn.innerHTML;
+  btn.innerHTML='Link copied';
+  setTimeout(function(){btn.innerHTML=original;}, 1500);
+});
+
+document.getElementById('shareBtn').addEventListener('click', function(){
+  var btn=this;
+  function showCopied(){
+    var original=btn.innerHTML;
+    btn.innerHTML='Link copied';
+    setTimeout(function(){btn.innerHTML=original;}, 1500);
+  }
+  var shareData={
+    title:'LD Sprinkler Systems',
+    text:'LD Sprinkler Systems — irrigation & property services in Ocean County, NJ',
+    url: pageUrl
+  };
+  try{
+    if(navigator.share && (!navigator.canShare || navigator.canShare(shareData))){
+      navigator.share(shareData).catch(function(err){
+        if(!err || err.name!=='AbortError'){openSharePanel();}
+      });
+      return;
+    }
+  }catch(e){}
+  openSharePanel();
+});
+</script>
+
+</body>
+</html>
