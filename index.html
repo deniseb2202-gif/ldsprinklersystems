@@ -580,7 +580,7 @@ Call 848-525-0532</a>
 <div style="display: flex; flex-direction: column; gap: 18px">
 <h2 class="cond" style="margin: 0; font-size: 56px; line-height: 1; font-weight: 800; color: #1F2226">About LD Sprinkler Systems</h2>
 <div class="about-stats">
-<div><span class="cond about-num">25+</span><span class="about-lbl">Years of owner experience</span></div>
+<div><span class="cond about-num">25+</span><span class="about-lbl">Years of experience</span></div>
 <div><span class="cond about-num">4</span><span class="about-lbl">Counties served</span></div>
 <div><span class="cond about-num">Free</span><span class="about-lbl">Estimates on every project</span></div>
 </div>
@@ -887,6 +887,66 @@ Call 848-525-0532</a>
     .finally(function(){btn.disabled=false;btn.textContent='Request My Free Estimate'});
   });
   // Fill the service dropdown when a link like #estimate?service= is used (none currently)
+})();
+</script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var box=document.querySelector('.about-stats'); if(!box) return;
+  var DUR=2400, POP=950, nums=[], words=[];
+  [].slice.call(box.querySelectorAll('.about-num')).forEach(function(n){
+    var t=n.textContent.trim(), m=/^(\d+)(\+?)$/.exec(t);
+    if(m) nums.push({el:n,end:+m[1],suf:m[2],from:+m[1]<10?1:0});
+    else if(t) words.push({el:n,text:t});
+  });
+  function runNum(n){
+    var t0=performance.now();
+    n.el.textContent=n.from+n.suf;
+    (function step(t){
+      var p=Math.min(1,(t-t0)/DUR);
+      var v=n.end<10?n.from+Math.floor((n.end-n.from)*Math.min(1,p/0.92)):Math.round(n.from+(n.end-n.from)*p);
+      n.el.textContent=v+n.suf;
+      if(p<1) requestAnimationFrame(step); else n.el.textContent=n.end+n.suf;
+    })(t0);
+  }
+  function runWord(w){
+    var el=w.el, letters=w.text.split(''), n=letters.length;
+    if(!el.animate||n<2) return;
+    var dims=[];
+    el.textContent='';
+    letters.forEach(function(ch){var s=document.createElement('span');s.textContent=ch;s.style.display='inline-block';el.appendChild(s);});
+    [].slice.call(el.children).forEach(function(s){var r=s.getBoundingClientRect();dims.push({w:r.width,h:r.height});});
+    el.textContent=''; el.setAttribute('aria-label',w.text);
+    var upper='ABCDEGHKLMNPRSTW', lower='abcdefghkmnoprstuvwxyz';
+    letters.forEach(function(ch,i){
+      var d=dims[i], col=document.createElement('span'), strip=document.createElement('span'), pool=i===0?upper:lower, steps=7+i*3, k;
+      col.setAttribute('aria-hidden','true');
+      col.style.cssText='display:inline-block;overflow:hidden;vertical-align:bottom;width:'+d.w+'px;height:'+d.h+'px';
+      strip.style.cssText='display:block;will-change:transform';
+      for(k=0;k<steps;k++){
+        var it=document.createElement('span');
+        it.textContent=pool.charAt(Math.floor(Math.random()*pool.length));
+        it.style.cssText='display:block;text-align:center;height:'+d.h+'px';
+        strip.appendChild(it);
+      }
+      var last=document.createElement('span');
+      last.textContent=ch; last.style.cssText='display:block;text-align:center;height:'+d.h+'px';
+      strip.appendChild(last);
+      col.appendChild(strip); el.appendChild(col);
+      var stop=DUR-(n-1-i)*320;
+      strip.animate([{transform:'translateY(0)'},{transform:'translateY(-'+(steps*d.h)+'px)'}],{duration:stop,easing:'cubic-bezier(.22,.8,.25,1)',fill:'forwards'});
+    });
+    setTimeout(function(){el.textContent=w.text;el.removeAttribute('aria-label');},DUR+150);
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      io.disconnect();
+      nums.forEach(runNum); words.forEach(runWord);
+    });
+  },{threshold:.5});
+  io.observe(box);
 })();
 </script>
 </body>
