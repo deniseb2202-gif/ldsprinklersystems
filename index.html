@@ -110,6 +110,7 @@ a{color:#1F2226}a:hover{color:#2B2E33}
 @keyframes heroFade{0%{opacity:0}5%{opacity:1}25%{opacity:1}30%{opacity:0}100%{opacity:0}}
 .hero{position:relative;min-height:740px;margin-top:-30px;display:flex;align-items:flex-end;overflow:hidden}
 .hero h1{font-size:84px;line-height:0.95}
+@media (min-width:961px){header > .wrap,.hero > .wrap{max-width:none;padding-left:clamp(32px,4vw,88px);padding-right:clamp(32px,4vw,88px)}}
 .door{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:56px;align-items:center}
 .svc-bg{background:#FFFFFF;border-bottom:1px solid #D9DBD5}
 .svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;background:#22392B;border-radius:4px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,0.28)}
