@@ -8,32 +8,58 @@
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://ldsprinklersystems.com/card/">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#1b1c1f">
-<style>html{background:#1b1c1f}body{font-size:14px}[hidden]{display:none!important}</style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>html{background:var(--bg)}body{font-size:14px}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
-/* Layout concept: a letterhead in the truck colors, charcoal grey and gold — monogram and name
-   centered under a double rule, contact details set as labeled lines,
-   services as a two-column list below a second rule, one deliberate
-   navy surface throughout (not a light/dark toggle). */
+/* Layout concept: an app-style service profile — badge sits beside
+   the name instead of centered above it, contact rows read like
+   native Contacts entries, services show as an icon grid. Charcoal
+   grey is the base; gold marks the CTA and accents. */
 :root{
-  --paper:#2b2d31;
-  --paper-2:#1b1c1f;
-  --ink:#f3f0e7;
-  --ink-soft:#a5a5a1;
-  --gold:#d6a93f;
-  --gold-deep:#ebc470;
-  --rule:#45474c;
-  --panel:#36383d;
-  --font-display:'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --bg:#eeece6;
+  --surface:#ffffff;
+  --ink:#26282c;
+  --ink-soft:#6a6c70;
+  --primary:#34363b;
+  --primary-deep:#26282c;
+  --primary-tint:#e7e5de;
+  --gold:#c9a03a;
+  --rule:#dedbd2;
+  --font-display:'Fraunces', Georgia, serif;
   --font-body:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17181a;
+    --surface:#222427;
+    --ink:#f1eee5;
+    --ink-soft:#a3a39e;
+    --primary:#4a4d53;
+    --primary-deep:#e0b95a;
+    --primary-tint:#33353a;
+    --gold:#d9ae4a;
+    --rule:#34363a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17181a;
+  --surface:#222427;
+  --ink:#f1eee5;
+  --ink-soft:#a3a39e;
+  --primary:#4a4d53;
+  --primary-deep:#e0b95a;
+  --primary-tint:#33353a;
+  --gold:#d9ae4a;
+  --rule:#34363a;
   color-scheme: dark;
 }
 
 *{box-sizing:border-box}
 body{
   margin:0;
-  background:var(--paper-2);
+  background:var(--bg);
   color:var(--ink);
   font-family:var(--font-body);
   padding-left:max(16px, env(safe-area-inset-left,0px));
@@ -46,310 +72,334 @@ body{
 
 .wrap{
   width:100%;
-  max-width:440px;
+  max-width:420px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
 }
 
-.sheet{
-  background:var(--paper);
-  border:1px solid var(--rule);
-  padding:44px 34px 36px;
+/* ---- header ---- */
+.header{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:linear-gradient(135deg,#383a40,#1f2023);
+  border:1px solid #4a4d53;
+  border-radius:16px;
+  padding:22px;
+  box-shadow:inset 0 3px 0 var(--gold), 0 16px 32px -18px rgba(0,0,0,.65);
 }
-
-.crest{
-  width:46px;height:46px;
-  margin:0 auto 18px;
-  border:1px solid var(--gold);
+.badge{
+  flex:none;
+  width:58px;height:58px;
   border-radius:50%;
+  background:var(--gold);
+  color:#26282c;
+  box-shadow:0 0 0 3px rgba(214,169,63,.28);
   display:flex;align-items:center;justify-content:center;
   font-family:var(--font-display);
   font-weight:600;
-  font-size:19px;
-  color:var(--gold-deep);
+  font-size:22px;
+  letter-spacing:.5px;
 }
-.crest span:first-child{position:relative;top:-2px}
-.crest span:last-child{position:relative;top:2px}
-
-h1{
+.badge span:first-child{position:relative;top:-2px}
+.badge span:last-child{position:relative;top:2px}
+.header-text{min-width:0}
+.header-text h1{
   margin:0;
-  text-align:center;
   font-family:var(--font-display);
   font-weight:600;
-  font-size:30px;
-  letter-spacing:.3px;
-  text-wrap:balance;
+  font-size:21px;
+  line-height:1.2;
+  color:#f6f3ea;
 }
-.role{
-  text-align:center;
-  margin:6px 0 0;
-  font-size:11px;
-  letter-spacing:2.2px;
-  text-transform:uppercase;
-  color:var(--gold-deep);
+.header-text p{
+  margin:4px 0 0;
+  font-size:12.5px;
+  color:#b9b9b4;
+}
+.badges-row{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+  flex-wrap:wrap;
+}
+.pill{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.3px;
+  color:#ebc470;
+  background:rgba(214,169,63,.16);
+  border:1px solid rgba(214,169,63,.38);
+  padding:2px 8px;
+  border-radius:20px;
 }
 
-.rule-set{
+/* ---- contact list ---- */
+.contact-card{
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 12px 26px -18px rgba(0,0,0,.4);
+}
+.row{
   display:flex;
   align-items:center;
-  gap:10px;
-  margin:24px 0;
-}
-.rule-set::before,.rule-set::after{
-  content:"";
-  flex:1;
-  height:1px;
-  background:var(--rule);
-}
-.rule-mark{
-  width:5px;height:5px;
-  border-radius:50%;
-  background:var(--gold);
-  flex:none;
-}
-
-.blurb{
-  text-align:center;
-  font-size:13.5px;
-  color:var(--ink-soft);
-  line-height:1.65;
-  max-width:34ch;
-  margin:0 auto 28px;
-}
-
-.contact-block{
-  display:flex;
-  flex-direction:column;
-  gap:11px;
-  max-width:300px;
-  margin:0 auto;
-}
-.contact-line{
-  display:flex;
-  align-items:baseline;
-  justify-content:center;
-  gap:10px;
-  text-align:center;
-  font-size:14.5px;
-  font-variant-numeric:tabular-nums;
-}
-.contact-label{
-  flex:none;
-  width:52px;
-  text-align:right;
-  font-size:9.5px;
-  font-weight:600;
-  letter-spacing:1.3px;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-.contact-line a{
-  color:var(--ink);
-  text-decoration:none;
+  gap:13px;
+  padding:14px 18px;
   border-bottom:1px solid var(--rule);
-  padding-bottom:1px;
 }
-.contact-line a:hover{border-color:var(--gold)}
-
-.copy-row{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin:14px 0 26px;
+.row:last-child{border-bottom:none}
+.icon-chip{
+  flex:none;
+  width:34px;height:34px;
+  border-radius:9px;
+  background:var(--primary);
+  color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
 }
-.copy-pill{
-  border:1px solid var(--rule);
-  background:transparent;
+.icon-chip svg{width:17px;height:17px}
+.row-text{flex:1;min-width:0}
+.row-label{
+  margin:0;
+  font-size:10px;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.row-value{
+  margin:1px 0 0;
+  font-size:15px;
+  font-weight:500;
+  color:var(--ink);
+  overflow-wrap:anywhere;
+}
+.row-value a{color:inherit;text-decoration:none}
+.row-value.email{font-size:clamp(9.5px,2.9vw,14px);white-space:nowrap;overflow-wrap:normal}
+.copy-btn{
+  flex:none;
+  border:none;
+  background:var(--bg);
   color:var(--ink-soft);
   font-family:var(--font-body);
-  font-size:10.5px;
-  letter-spacing:.3px;
-  padding:6px 11px;
-  border-radius:20px;
+  font-size:11px;
+  font-weight:600;
+  padding:7px 11px;
+  border-radius:8px;
   cursor:pointer;
 }
-.copy-pill:hover{border-color:var(--gold);color:var(--gold-deep)}
-.copy-pill:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.copy-pill[data-copied="true"]{color:var(--gold-deep);border-color:var(--gold)}
+.copy-btn:hover{color:var(--primary-deep)}
+.copy-btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.copy-btn[data-copied="true"]{color:var(--primary-deep)}
 
+/* ---- CTA ---- */
 .cta{
-  display:block;
-  text-align:center;
-  margin:26px auto 0;
-  padding:14px 20px;
-  max-width:260px;
-  background:var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:17px 20px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#dfb753,#c49a32);
   color:#26282c;
   font-family:var(--font-body);
   font-weight:700;
-  font-size:12px;
-  letter-spacing:1.4px;
-  text-transform:uppercase;
+  font-size:15px;
   text-decoration:none;
+  box-shadow:0 14px 28px -10px rgba(201,160,58,.65), inset 0 1px 0 rgba(255,255,255,.35);
 }
-.cta:hover{background:var(--gold-deep)}
+.cta:hover{filter:brightness(1.08)}
+.cta svg{width:17px;height:17px;flex:none}
 
-.rule-thin{
-  height:1px;
-  background:var(--rule);
-  margin:0 0 24px;
+/* ---- services ---- */
+.sheet{
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:16px;
+  padding:20px 20px 18px;
+  box-shadow:inset 0 3px 0 var(--gold), 0 12px 26px -18px rgba(0,0,0,.4);
 }
-
-.section-label{
-  text-align:center;
-  font-size:10px;
+.sheet h2{
+  margin:0 0 14px;
+  font-size:11px;
   font-weight:700;
-  letter-spacing:2px;
+  letter-spacing:1.2px;
   text-transform:uppercase;
   color:var(--ink-soft);
-  margin:0 0 16px;
 }
-
 .services{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px 20px;
+  gap:10px;
   list-style:none;
-  margin:0 0 24px;
+  margin:0 0 18px;
   padding:0;
-  font-family:var(--font-display);
-  font-size:16px;
-  text-align:center;
 }
-
-.areas{
-  text-align:center;
+.services li{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:13px;
+  font-weight:500;
+  color:var(--ink);
+  background:var(--bg);
+  border-radius:10px;
+  padding:10px 12px;
+}
+.services li svg{
+  flex:none;
+  width:15px;height:15px;
+  color:var(--gold);
+}
+.meta{
+  padding-top:14px;
+  border-top:1px solid var(--rule);
   font-size:12.5px;
   color:var(--ink-soft);
   line-height:1.6;
+  text-align:center;
 }
-.areas strong{
+.meta strong{
   display:block;
   color:var(--ink);
   font-weight:600;
-  font-size:clamp(9.5px, 3vw, 12.5px);
+  font-size:clamp(9.5px,3.05vw,13px);
   white-space:nowrap;
-  margin-bottom:4px;
 }
 
-.share-row{
-  display:flex;
-  gap:10px;
-  margin-top:16px;
-}
+.share-row{display:flex;gap:10px}
 .share-btn{
   flex:1;
   border:1px solid var(--rule);
-  background:var(--paper);
+  background:var(--surface);
   color:var(--ink);
   font-family:var(--font-body);
   font-weight:600;
   font-size:12.5px;
   padding:13px 10px;
+  border-radius:12px;
   cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
 }
 .share-btn.primary{
-  background:var(--panel);
-  color:var(--gold-deep);
-  border-color:var(--gold);
+  background:var(--primary);
+  color:var(--gold);
+  border-color:var(--primary);
 }
-.share-btn.primary:hover{background:var(--rule)}
-.share-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.share-btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .share-btn svg{width:14px;height:14px;flex:none}
 
-.share-panel{margin-top:14px;border:1px solid var(--rule);background:var(--panel);padding:16px 14px 14px}
-.share-panel-title{margin:0 0 12px;text-align:center;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+.share-panel{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:16px;box-shadow:0 12px 26px -18px rgba(0,0,0,.4)}
+.share-panel-title{margin:0 0 12px;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft)}
 .share-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.share-opt{display:block;width:100%;text-align:center;padding:11px 8px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer}
-.share-opt:hover{border-color:var(--gold);color:var(--gold-deep)}
+.share-opt{display:block;width:100%;text-align:center;padding:12px 8px;border:1px solid var(--rule);border-radius:10px;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer}
+.share-opt:hover{border-color:var(--gold)}
 .share-opt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .footer-note{
   text-align:center;
-  font-size:10.5px;
+  font-size:11px;
   color:var(--ink-soft);
-  opacity:.7;
-  margin:14px 0 0;
+  opacity:.75;
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="sheet">
-    <div class="crest"><span>L</span><span>D</span></div>
-    <h1>LD Sprinkler Systems</h1>
-    <p class="role">Irrigation &amp; Property Services</p>
 
-    <div class="rule-set"><span class="rule-mark"></span></div>
-
-    <p class="blurb">25+ years of hands-on experience keeping lawns, drainage, and outdoor property in working order. Free estimates.</p>
-
-    <div class="contact-block">
-      <div class="contact-line">
-        <span class="contact-label">Main</span>
-        <a href="tel:+18485250532">(848) 525-0532</a>
-      </div>
-      <div class="contact-line">
-        <span class="contact-label">Alt</span>
-        <a href="tel:+19089107685">(908) 910-7685</a>
-      </div>
-      <div class="contact-line">
-        <span class="contact-label">Email</span>
-        <a href="mailto:ldsprinklersystemllc@gmail.com">ldsprinklersystemllc@gmail.com</a>
+  <div class="header">
+    <div class="badge"><span>L</span><span>D</span></div>
+    <div class="header-text">
+      <h1>LD Sprinkler Systems</h1>
+      <p>Irrigation &amp; Property Services</p>
+      <div class="badges-row">
+        <span class="pill">25+ Yrs Experience</span>
+        <span class="pill">Free Estimates</span>
       </div>
     </div>
-
-    <div class="copy-row">
-      <button class="copy-pill" data-copy="(848) 525-0532">Copy phone</button>
-      <button class="copy-pill" data-copy="ldsprinklersystemllc@gmail.com">Copy email</button>
-    </div>
-
-    <div class="rule-thin"></div>
-
-    <p class="section-label">Services</p>
-    <ul class="services">
-      <li>Sprinkler &amp; Irrigation</li>
-      <li>Drainage Systems</li>
-      <li>Fencing</li>
-      <li>Landscape Lighting</li>
-      <li>Landscaping</li>
-      <li>Power Washing</li>
-    </ul>
-
-    <div class="areas">
-      <strong>Ocean, Monmouth, Middlesex &amp; Union Counties, NJ</strong>
-      Mon&ndash;Sun, 8am&ndash;8pm &middot; ldsprinklersystems.com
-    </div>
-
-    <a class="cta" href="https://ldsprinklersystems.com/#estimate">Click Here for a Free Estimate</a>
-
-    <div class="share-row">
-      <button class="share-btn primary" id="shareBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-        Share card
-      </button>
-      <button class="share-btn" id="copyLinkBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-        Copy link
-      </button>
-    </div>
-
-    <div class="share-panel" id="sharePanel" hidden>
-      <p class="share-panel-title">Share this card</p>
-      <div class="share-grid">
-        <a class="share-opt" id="shMsg" href="#">Messages</a>
-        <a class="share-opt" id="shMail" href="#">Email</a>
-        <a class="share-opt" id="shWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="share-opt" id="shFb" href="#" target="_blank" rel="noopener">Facebook</a>
-        <a class="share-opt" id="shX" href="#" target="_blank" rel="noopener">X</a>
-        <a class="share-opt" id="shIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-      <button class="share-opt" id="shCopy" style="margin-top:8px">Copy link</button>
-    </div>
-
-    <p class="footer-note">Tap a phone or email line to call or write &mdash; or use Copy.</p>
   </div>
+
+  <div class="contact-card">
+    <div class="row">
+      <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+      <div class="row-text">
+        <p class="row-label">Main</p>
+        <p class="row-value"><a href="tel:+18485250532">(848) 525-0532</a></p>
+      </div>
+      <button class="copy-btn" data-copy="(848) 525-0532">Copy</button>
+    </div>
+    <div class="row">
+      <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div>
+      <div class="row-text">
+        <p class="row-label">Alt</p>
+        <p class="row-value"><a href="tel:+19089107685">(908) 910-7685</a></p>
+      </div>
+      <button class="copy-btn" data-copy="(908) 910-7685">Copy</button>
+    </div>
+    <div class="row">
+      <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+      <div class="row-text">
+        <p class="row-label">Email</p>
+        <p class="row-value email"><a href="mailto:ldsprinklersystemllc@gmail.com">ldsprinklersystemllc@gmail.com</a></p>
+      </div>
+      <button class="copy-btn" data-copy="ldsprinklersystemllc@gmail.com">Copy</button>
+    </div>
+    <div class="row">
+      <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+      <div class="row-text">
+        <p class="row-label">Hours</p>
+        <p class="row-value">Mon&ndash;Sun, 8am&ndash;8pm</p>
+      </div>
+    </div>
+  </div>
+
+  <a class="cta" href="https://ldsprinklersystems.com/#estimate">
+    Get a Free Estimate
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </a>
+
+  <div class="sheet">
+    <h2>Services</h2>
+    <ul class="services">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>Sprinkler &amp; Irrigation</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>Drainage Systems</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="22" x2="4" y2="5"></line><line x1="10" y1="22" x2="10" y2="5"></line><line x1="16" y1="22" x2="16" y2="5"></line><line x1="2" y1="9" x2="22" y2="9"></line></svg>Fencing</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line></svg>Landscape Lighting</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13V8a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v5a7 7 0 0 1-7 7z"></path><path d="M11 20v2"></path></svg>Landscaping</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l4-4 4 4 4-7 4 5"></path><path d="M3 20h18"></path></svg>Power Washing</li>
+    </ul>
+    <div class="meta">
+      <strong>Ocean, Monmouth, Middlesex &amp; Union Counties, NJ</strong>
+      ldsprinklersystems.com
+    </div>
+  </div>
+
+  <div class="share-row">
+    <button class="share-btn primary" id="shareBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+      Share card
+    </button>
+    <button class="share-btn" id="copyLinkBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      Copy link
+    </button>
+  </div>
+
+  <div class="share-panel" id="sharePanel" hidden>
+    <p class="share-panel-title">Share this card</p>
+    <div class="share-grid">
+      <a class="share-opt" id="shMsg" href="#">Messages</a>
+      <a class="share-opt" id="shMail" href="#">Email</a>
+      <a class="share-opt" id="shWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="share-opt" id="shFb" href="#" target="_blank" rel="noopener">Facebook</a>
+      <a class="share-opt" id="shX" href="#" target="_blank" rel="noopener">X</a>
+      <a class="share-opt" id="shIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <button class="share-opt" id="shCopy" style="margin-top:8px">Copy link</button>
+  </div>
+
+  <p class="footer-note">Tap a phone or email row to call or write &mdash; or use Copy.</p>
+
 </div>
 
 <script>
@@ -370,7 +420,7 @@ function copyText(text){
     fallbackCopy(text);
   }
 }
-document.querySelectorAll('.copy-pill').forEach(function(btn){
+document.querySelectorAll('.copy-btn').forEach(function(btn){
   btn.addEventListener('click', function(){
     copyText(btn.getAttribute('data-copy'));
     var original=btn.textContent;
@@ -384,7 +434,7 @@ document.querySelectorAll('.copy-pill').forEach(function(btn){
 });
 
 var pageUrl = 'https://ldsprinklersystems.com/card/';
-var shareText = 'LD Sprinkler Systems — irrigation & property services in New Jersey. Free estimates: ';
+var shareText = 'LD Sprinkler Systems \u2014 irrigation & property services in New Jersey. Free estimates: ';
 function wireSharePanel(){
   var u=encodeURIComponent(pageUrl), t=encodeURIComponent(shareText);
   var map={
